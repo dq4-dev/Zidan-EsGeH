@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaidan — Navigator Cahaya &amp; Impian</title>
+  <meta name="description" content="Portofolio resmi Zaidan Sabian Gumilar — Santri Daar el Qolam, pembelajar teknologi, dan navigator cahaya menuju masa depan." />
+
+  <!-- Google Fonts dengan Fallback Sistem Ringan untuk Windows 7 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome 6 untuk Ikon Lengkap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Segoe UI"', 'Tahoma', 'Arial', 'sans-serif'],
+            display: ['"Cinzel"', 'Georgia', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
+          },
+          colors: {
+            night: {
+              950: '#060b19',
+              900: '#0b152c',
+              800: '#112040',
+            },
+            gold: {
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            skycelestial: {
+              300: '#93c5fd',
+              400: '#38bdf8',
+              500: '#0284c7',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* =========================================================================
+       TEMA: GOLDEN TWILIGHT & CELESTIAL INDIGO
+       Dioptimalkan untuk Layar 1366x768 & GPU Windows 7 (Acer Aspire V5)
+       ========================================================================= */
+    :root {
+      --bg-deep: #060b19;
+      --bg-mid: #0b152c;
+      --gold-primary: #f59e0b;
+      --gold-light: #fcd34d;
+      --sky-accent: #38bdf8;
+      --glass-bg: rgba(11, 21, 44, 0.78);
+      --glass-border: rgba(252, 211, 77, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(circle at 18% 12%, rgba(245, 158, 11, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 82% 20%, rgba(56, 189, 248, 0.14) 0%, transparent 48%),
+        linear-gradient(180deg, #060b19 0%, #0b152c 50%, #060b19 100%);
+      color: #f1f5f9;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Canvas Latar Belakang (Ringan tanpa filter berat) */
+    #twilight-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Kartu Glassmorphism Ringan (Tanpa backdrop-filter berlapis yang memberatkan Win7) */
+    .twilight-card {
+      background: linear-gradient(145deg, rgba(15, 29, 58, 0.85), rgba(8, 15, 34, 0.92));
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(252, 211, 77, 0.12);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .twilight-card:hover {
+      border-color: rgba(252, 211, 77, 0.48);
+      box-shadow: 0 14px 34px rgba(245, 158, 11, 0.14), inset 0 1px 0 rgba(252, 211, 77, 0.22);
+      transform: translateY(-3px);
+    }
+
+    /* Teks Gradien Emas & Langit Senja */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 52%, #fb923c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-celestial-gradient {
+      background: linear-gradient(135deg, #fcd34d 0%, #93c5fd 60%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Bingkai Orbital Foto Utama Zidan */
+    .orbital-frame {
+      position: relative;
+      border-radius: 9999px;
+      padding: 6px;
+      background: conic-gradient(from 180deg, #f59e0b, #fcd34d, #38bdf8, #0b152c, #f59e0b);
+      box-shadow: 0 0 36px rgba(245, 158, 11, 0.28), 0 0 60px rgba(56, 189, 248, 0.14);
+    }
+
+    .orbital-ring-outer {
+      position: absolute;
+      inset: -12px;
+      border-radius: 9999px;
+      border: 1px dashed rgba(252, 211, 77, 0.4);
+      animation: spinSlow 28s linear infinite;
+      pointer-events: none;
+    }
+
+    .orbital-ring-inner {
+      position: absolute;
+      inset: -22px;
+      border-radius: 9999px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      animation: spinReverse 38s linear infinite;
+      pointer-events: none;
+    }
+
+    .orbital-dot {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      margin-left: -4px;
+      border-radius: 9999px;
+      background: #fcd34d;
+      box-shadow: 0 0 10px #f59e0b;
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes spinReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    /* Marquee Berjalan Halus */
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 32s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Progress Bar Keahlian */
+    .skill-bar-fill {
+      background: linear-gradient(90deg, #38bdf8 0%, #f59e0b 65%, #fcd34d 100%);
+      transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Optimasi Khusus Resolusi Layar Laptop 1366x768 (Acer Aspire V5) */
+    @media (min-width: 1024px) and (max-height: 800px) {
+      .hero-compact {
+        padding-top: 5.25rem !important;
+        padding-bottom: 2.25rem !important;
+        min-height: 100vh;
+      }
+      .hero-title-compact {
+        font-size: 2.65rem !important;
+        line-height: 1.15 !important;
+      }
+      .hero-avatar-compact {
+        width: 15.5rem !important;
+        height: 15.5rem !important;
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #060b19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e3a5f;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f59e0b;
+    }
+  </style>
+</head>
+<body class="font-sans selection:bg-amber-500/30 selection:text-amber-200">
+
+  <!-- Canvas Latar Belakang Bintang & Kunang-kunang Senja Keemasan -->
+  <canvas id="twilight-canvas" aria-hidden="true"></canvas>
+
+  <!-- =======================================================================
+       NAVIGASI UTAMA & WIDGET WAKTU SANTRI REAL-TIME (WIB)
+       ======================================================================= -->
+  <header class="fixed top-0 inset-x-0 z-40 bg-[#060b19]/90 border-b border-amber-400/20 shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <!-- Brand Logo -->
+      <a href="#beranda" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-night-950 font-display font-bold text-lg shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          Z
+        </div>
+        <div class="leading-tight">
+          <span class="font-display font-bold text-base sm:text-lg tracking-wide text-amber-300">ZAIDAN</span>
+          <span class="block text-[10px] uppercase tracking-widest text-sky-300/80">Daar el Qolam</span>
+        </div>
+      </a>
+
+      <!-- Widget Penunjuk Waktu & Fase Langit Santri (WIB) -->
+      <div id="santri-clock-widget" class="hidden md:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-night-900/90 border border-amber-400/25 text-xs">
+        <span id="sky-phase-icon" class="text-amber-400"><i class="fa-solid fa-sun"></i></span>
+        <span id="sky-phase-label" class="font-medium text-amber-200">Waktu Dhuha</span>
+        <span class="text-slate-600">|</span>
+        <span id="wib-clock" class="font-mono font-semibold text-sky-300">--:--:-- WIB</span>
+        <span class="text-slate-600 hidden lg:inline">|</span>
+        <span id="santri-activity" class="text-slate-300 hidden lg:inline">Kajian &amp; Belajar</span>
+      </div>
+
+      <!-- Menu Navigasi Desktop -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#beranda" class="hover:text-amber-300 transition-colors">Beranda</a>
+        <a href="#mimpi" class="hover:text-amber-300 transition-colors">Mimpi &amp; Hikmah</a>
+        <a href="#perjalanan" class="hover:text-amber-300 transition-colors">Pendidikan</a>
+        <a href="#keahlian" class="hover:text-amber-300 transition-colors">Keahlian</a>
+        <a href="#kontak" class="px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-night-950 font-semibold hover:from-amber-400 hover:to-amber-500 transition-all shadow-md shadow-amber-500/20">
+          Hubungi Zaidan
+        </a>
+      </nav>
+
+      <!-- Tombol Menu Mobile -->
+      <button id="mobile-menu-btn" type="button" aria-label="Buka Menu" class="lg:hidden p-2.5 rounded-xl bg-night-900 border border-amber-400/25 text-amber-300 hover:bg-night-800">
+        <i class="fa-solid fa-bars text-base"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Menu Mobile -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#060b19] border-b border-amber-400/20 px-4 py-4 space-y-3">
+      <!-- Widget Waktu versi Mobile -->
+      <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-night-900 border border-amber-400/20 text-xs">
+        <span class="flex items-center gap-2 text-amber-200 font-medium">
+          <span id="sky-phase-icon-mobile"><i class="fa-solid fa-moon"></i></span>
+          <span id="sky-phase-label-mobile">Fase Langit</span>
+        </span>
+        <span id="wib-clock-mobile" class="font-mono text-sky-300 font-semibold">--:-- WIB</span>
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-sm font-medium">
+        <a href="#beranda" class="mobile-nav-link px-3 py-2 rounded-lg bg-night-900/60 text-slate-200 hover:text-amber-300">Beranda</a>
+        <a href="#mimpi" class="mobile-nav-link px-3 py-2 rounded-lg bg-night-900/60 text-slate-200 hover:text-amber-300">Mimpi &amp; Hikmah</a>
+        <a href="#perjalanan" class="mobile-nav-link px-3 py-2 rounded-lg bg-night-900/60 text-slate-200 hover:text-amber-300">Pendidikan</a>
+        <a href="#keahlian" class="mobile-nav-link px-3 py-2 rounded-lg bg-night-900/60 text-slate-200 hover:text-amber-300">Keahlian</a>
+      </div>
+      <a href="#kontak" class="mobile-nav-link block text-center py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-night-950 font-semibold text-sm">
+        Hubungi Zidan
+      </a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <!-- =====================================================================
+         HERO SECTION (Dioptimalkan agar muat utuh di layar 1366x768)
+         ===================================================================== -->
+    <section id="beranda" class="hero-compact pt-24 pb-12 sm:pt-28 sm:pb-16 px-4 sm:px-6 flex items-center">
+      <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+
+        <!-- Kolom Kiri: Identitas & Narasi Zidan -->
+        <div class="lg:col-span-7 space-y-4 sm:space-y-5 text-center lg:text-left">
+          <!-- Badge Status Ketersediaan Kolaborasi -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-xs sm:text-sm text-amber-200">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+            </span>
+            <span>Santri Daar el Qolam &bull; Terbuka untuk Kolaborasi Kreatif</span>
+          </div>
+
+          <!-- Judul Utama -->
+          <div class="space-y-1.5">
+            <p class="text-sky-300 font-medium tracking-wider uppercase text-xs sm:text-sm">
+              Assalamu&rsquo;alaikum, Saya
+            </p>
+            <h1 class="hero-title-compact font-display text-3xl sm:text-5xl lg:text-[3.15rem] font-bold tracking-tight leading-tight text-white">
+              Zaidan Sabian <span class="text-gold-gradient">Gumilar</span>
+            </h1>
+            <h2 class="text-base sm:text-xl font-semibold text-celestial-gradient">
+              Navigator Cahaya, Pembelajar Ilmu &amp; Kreator Digital
+            </h2>
+          </div>
+
+          <!-- Bio Singkat -->
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Menempa diri di <strong class="text-amber-300 font-semibold">Pondok Pesantren Daar el Qolam</strong> dengan keyakinan bahwa ilmu agama dan teknologi adalah dua sayap yang menerbangkan generasi menuju peradaban bercahaya.
+          </p>
+
+          <!-- Tombol Aksi Utama -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+            <a href="#mimpi" class="px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-orange-400 text-night-950 font-bold text-sm shadow-lg shadow-amber-500/25 hover:brightness-110 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-compass"></i>
+              <span>Jelajahi Impian</span>
+            </a>
+            <a href="#kontak" class="px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-night-900/90 border border-sky-400/35 text-sky-200 font-semibold text-sm hover:border-amber-400/60 hover:text-amber-200 transition-all flex items-center gap-2">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>Jalin Silaturahmi</span>
+            </a>
+          </div>
+
+          <!-- Ringkasan Statistik Singkat (Terintegrasi rapi) -->
+          <div class="grid grid-cols-3 gap-3 pt-2 max-w-lg mx-auto lg:mx-0">
+            <div class="twilight-card rounded-xl p-3 text-center">
+              <div class="font-display text-lg sm:text-xl font-bold text-amber-300">100%</div>
+              <div class="text-[11px] sm:text-xs text-slate-400">Dedikasi Ilmu</div>
+            </div>
+            <div class="twilight-card rounded-xl p-3 text-center">
+              <div class="font-display text-lg sm:text-xl font-bold text-sky-300">Daar el Qolam</div>
+              <div class="text-[11px] sm:text-xs text-slate-400">Almamater Santri</div>
+            </div>
+            <div class="twilight-card rounded-xl p-3 text-center">
+              <div class="font-display text-lg sm:text-xl font-bold text-amber-300">Visi 2030</div>
+              <div class="text-[11px] sm:text-xs text-slate-400">Inovator Muda</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Foto Utama Zidan dengan Bingkai Orbital & Kartu Status -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center">
+          <div class="relative flex items-center justify-center my-2">
+            <!-- Cincin Orbital Kosmik -->
+            <div class="orbital-ring-inner"></div>
+            <div class="orbital-ring-outer">
+              <span class="orbital-dot"></span>
+            </div>
+
+            <!-- Bingkai Melingkar Foto Zidan (Close-up Berpeci Putih) -->
+            <div class="orbital-frame">
+              <div class="hero-avatar-compact w-56 h-56 sm:w-68 sm:h-68 lg:w-72 lg:h-72 rounded-full overflow-hidden bg-night-900 relative">
+                <img
+                  src="https://prp.daarelqolam.ac.id/api/image/santri-42471-120-120"
+                  
+                  
+                  alt="Zaidan Sabian Gumilar — Santri Daar el Qolam"
+                  class="w-full h-full object-cover object-center"
+                  onerror="this.onerror=null;this.src='https://placehold.co/600x600/0b152c/fcd34d?text=Zidan+%E2%80%A2+Daar+el+Qolam';"
+                />
+                <!-- Overlay Gradasi Hangat-Gelap Selaras Tema Senja -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#060b19]/75 via-transparent to-amber-500/10 pointer-events-none"></div>
+              </div>
+            </div>
+
+            <!-- Lencana Mengambang Kiri Bawah -->
+            <div class="absolute -bottom-3 left-0 sm:-left-4 px-3.5 py-2 rounded-xl bg-[#0b152c] border border-amber-400/40 shadow-xl flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center">
+                <i class="fa-solid fa-star-and-crescent"></i>
+              </div>
+              <div class="text-left">
+                <p class="text-[11px] text-slate-400 leading-none">Identitas</p>
+                <p class="text-xs font-bold text-amber-200 mt-0.5">Santri &amp; Teknolog</p>
+              </div>
+            </div>
+
+            <!-- Lencana Mengambang Kanan Atas -->
+            <div class="absolute -top-2 right-0 sm:-right-4 px-3 py-1.5 rounded-xl bg-[#0b152c] border border-sky-400/40 shadow-xl flex items-center gap-2">
+              <i class="fa-solid fa-sparkles text-sky-300 text-xs"></i>
+              <span class="text-xs font-semibold text-sky-200">Banten, ID</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MARQUEE NILAI & SEMANGAT SANTRI
+         ===================================================================== -->
+    <div class="border-y border-amber-400/20 bg-night-900/75 py-3 overflow-hidden">
+      <div class="marquee-track flex items-center gap-8 text-xs sm:text-sm font-medium tracking-wider uppercase text-amber-200/90">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-sun text-amber-400"></i> Menuntut Ilmu Sepanjang Hayat</span>
+        <span class="text-sky-400">&bull;</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-mosque text-sky-300"></i> Santri Daar el Qolam</span>
+        <span class="text-sky-400">&bull;</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-code text-amber-400"></i> Pengembangan Web &amp; Kreativitas</span>
+        <span class="text-sky-400">&bull;</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-compass text-sky-300"></i> Navigator Cahaya &amp; Impian</span>
+        <span class="text-sky-400">&bull;</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-book-open text-amber-400"></i> Adab Sebelum Ilmu</span>
+        <span class="text-sky-400">&bull;</span>
+        <!-- Duplikasi untuk kelancaran loop marquee -->
+        <span class="flex items-center gap-2"><i class="fa-solid fa-sun text-amber-400"></i> Menuntut Ilmu Sepanjang Hayat</span>
+        <span class="text-sky-400">&bull;</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-mosque text-sky-300"></i> Santri Daar el Qolam</span>
+        <span class="text-sky-400">&bull;</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-code text-amber-400"></i> Pengembangan Web &amp; Kreativitas</span>
+        <span class="text-sky-400">&bull;</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-compass text-sky-300"></i> Navigator Cahaya &amp; Impian</span>
+        <span class="text-sky-400">&bull;</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-book-open text-amber-400"></i> Adab Sebelum Ilmu</span>
+        <span class="text-sky-400">&bull;</span>
+      </div>
+    </div>
+
+    <!-- =====================================================================
+         SECTION MIMPI, QUOTE & WIDGET MUTIARA HIKMAH INTERAKTIF
+         (Menggunakan Latar Lanskap Senja Awan Emas & Biru)
+         ===================================================================== -->
+    <section id="mimpi" class="py-14 sm:py-20 px-4 sm:px-6 relative">
+      <div class="max-w-6xl mx-auto space-y-8">
+        <!-- Header Section -->
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-widest text-amber-400">Filosofi &amp; Cita-Cita</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
+            Cahaya Ilmu di Balik <span class="text-gold-gradient">Cakrawala Senja</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Setiap langkah belajar di pesantren adalah ikhtiar menyalakan pelita untuk masa depan umat dan bangsa.
+          </p>
+        </div>
+
+        <!-- Kartu Utama dengan Latar Foto Lanskap Awan Senja Emas & Biru -->
+        <div class="relative rounded-3xl overflow-hidden border border-amber-400/30 shadow-2xl">
+          <!-- Gambar Lanskap Senja -->
+          <img
+            src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=80"
+            alt="Lanskap Senja Keemasan dan Langit Biru"
+            class="absolute inset-0 w-full h-full object-cover object-center opacity-45"
+            onerror="this.onerror=null;this.src='https://placehold.co/1200x600/0b152c/f59e0b?text=Cakrawala+Senja+Zidan';"
+          />
+          <!-- Overlay Gradasi agar Teks Sangat Kontras & Mudah Dibaca -->
+          <div class="absolute inset-0 bg-gradient-to-r from-[#060b19]/95 via-[#0b152c]/85 to-[#060b19]/80"></div>
+
+          <div class="relative z-10 p-6 sm:p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Narasi Mimpi & Tanda Tangan Skrip "Zidan" -->
+            <div class="lg:col-span-7 space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/35 text-amber-300 text-xs font-semibold">
+                <i class="fa-solid fa-feather-pointed"></i>
+                <span>Manifesto Perjalanan</span>
+              </div>
+
+              <blockquote class="font-display text-xl sm:text-2xl lg:text-3xl font-semibold text-white leading-snug">
+                &ldquo;Seperti mentari senja yang mewarnai langit gelap dengan kilau keemasan, demikianlah ilmu menuntun langkah seorang santri menembus batas zaman.&rdquo;
+              </blockquote>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Sebagai santri <span class="text-amber-300 font-medium">Daar el Qolam</span>, saya percaya bahwa ketekunan dalam mengaji, kedisiplinan dalam keseharian, dan rasa ingin tahu terhadap dunia digital akan melahirkan karya yang bermanfaat luas.
+              </p>
+
+              <!-- Tanda Tangan Skrip Zidan -->
+              <div class="pt-2 flex items-center justify-between flex-wrap gap-4 border-t border-amber-400/20">
+                <div>
+                  <div class="font-script text-4xl sm:text-5xl text-amber-300 leading-none select-none">
+                    Zidan
+                  </div>
+                  <p class="text-xs text-sky-300 mt-1">Muhammad Zidan &mdash; Santri Daar el Qolam</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-300 bg-night-950/70 px-3.5 py-2 rounded-xl border border-sky-400/25">
+                  <i class="fa-solid fa-location-dot text-amber-400"></i>
+                  <span>Gintung, Jayanti, Tangerang &mdash; Banten</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- WIDGET BARU: Mutiara Hikmah & Quote Generator Interaktif -->
+            <div class="lg:col-span-5">
+              <div class="rounded-2xl bg-[#060b19]/90 border border-amber-400/35 p-5 sm:p-6 shadow-xl space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
+                    <i class="fa-solid fa-book-quran text-amber-400"></i>
+                    Mutiara Hikmah Santri
+                  </span>
+                  <span id="hikmah-counter" class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-500/15 text-sky-300 border border-sky-400/25">
+                    1 / 5
+                  </span>
+                </div>
+
+                <div class="min-h-[125px] flex flex-col justify-center space-y-2.5 py-1">
+                  <p id="hikmah-arabic" class="text-right font-serif text-lg sm:text-xl text-amber-200 leading-relaxed" dir="rtl">
+                    مَنْ جَدَّ وَجَدَ
+                  </p>
+                  <p id="hikmah-text" class="text-sm sm:text-base text-slate-100 font-medium italic leading-relaxed">
+                    &ldquo;Barang siapa yang bersungguh-sungguh, maka ia akan mendapatkan kesuksesan.&rdquo;
+                  </p>
+                  <p id="hikmah-source" class="text-xs text-sky-300 font-medium">
+                    &mdash; Mahfuzhat Santri
+                  </p>
+                </div>
+
+                <div class="flex items-center gap-2.5 pt-2 border-t border-slate-800">
+                  <button
+                    id="next-hikmah-btn"
+                    type="button"
+                    class="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-night-950 font-bold text-xs sm:text-sm hover:from-amber-400 hover:to-amber-500 transition-all flex items-center justify-center gap-2 shadow-md shadow-amber-500/20"
+                  >
+                    <i class="fa-solid fa-rotate"></i>
+                    <span>Hikmah Berikutnya</span>
+                  </button>
+                  <button
+                    id="copy-hikmah-btn"
+                    type="button"
+                    title="Salin Mutiara Hikmah"
+                    class="py-2.5 px-3.5 rounded-xl bg-night-800 border border-sky-400/30 text-sky-300 hover:text-amber-300 hover:border-amber-400/50 transition-all text-xs sm:text-sm"
+                  >
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         RIWAYAT PENDIDIKAN & PETA CITA-CITA
+         ===================================================================== -->
+    <section id="perjalanan" class="py-14 sm:py-20 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto space-y-10">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-widest text-sky-300">Jejak Langkah &amp; Visi</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
+            Pendidikan &amp; <span class="text-celestial-gradient">Peta Cita-Cita</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Fondasi karakter pesantren yang berpadu dengan penguasaan sains, bahasa, dan teknologi informasi.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <!-- Kolom Pendidikan -->
+          <div class="twilight-card rounded-2xl p-6 sm:p-7 space-y-6">
+            <div class="flex items-center gap-3 border-b border-amber-400/20 pb-4">
+              <div class="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-400/35 text-amber-300 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div>
+                <h3 class="font-display text-lg sm:text-xl font-bold text-white">Riwayat Pendidikan</h3>
+                <p class="text-xs text-slate-400">Pembentukan Akhlak, Bahasa &amp; Intelektual</p>
+              </div>
+            </div>
+
+            <div class="space-y-5 relative pl-5 border-l-2 border-amber-400/35">
+              <!-- Item 1 -->
+              <div class="relative">
+                <span class="absolute -left-[25px] top-1 w-3.5 h-3.5 rounded-full bg-amber-400 ring-4 ring-night-900"></span>
+                <span class="text-xs font-semibold text-amber-300">Sekarang &bull; Santri Aktif</span>
+                <h4 class="text-base sm:text-lg font-bold text-white mt-0.5">Pondok Pesantren Daar el Qolam</h4>
+                <p class="text-xs text-sky-300 mb-1.5">Gintung, Jayanti, Tangerang, Banten</p>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Mendalami ilmu-ilmu keislaman, penguasaan Bahasa Arab &amp; Bahasa Inggris, kepemimpinan organisasi santri, serta pengembangan literasi digital.
+                </p>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="relative">
+                <span class="absolute -left-[25px] top-1 w-3.5 h-3.5 rounded-full bg-sky-400 ring-4 ring-night-900"></span>
+                <span class="text-xs font-semibold text-sky-300">Pendidikan Dasar</span>
+                <h4 class="text-base sm:text-lg font-bold text-white mt-0.5">Fondasi Akademik &amp; Al-Qur&rsquo;an</h4>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-1">
+                  Membangun dasar tahfidz, kedisiplinan belajar, dan ketertarikan awal pada komputer serta desain visual.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kolom Cita-Cita & Target Masa Depan -->
+          <div class="twilight-card rounded-2xl p-6 sm:p-7 space-y-6">
+            <div class="flex items-center gap-3 border-b border-sky-400/20 pb-4">
+              <div class="w-11 h-11 rounded-xl bg-sky-500/15 border border-sky-400/35 text-sky-300 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-rocket"></i>
+              </div>
+              <div>
+                <h3 class="font-display text-lg sm:text-xl font-bold text-white">Cita-Cita &amp; Orientasi</h3>
+                <p class="text-xs text-slate-400">Kompas Masa Depan Muhammad Zidan</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-night-950/70 border border-amber-400/20 flex items-start gap-3.5">
+                <div class="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm sm:text-base font-bold text-amber-200">Teknolog &amp; Pengembang Perangkat Lunak</h4>
+                  <p class="text-xs sm:text-sm text-slate-300 mt-1">
+                    Membangun aplikasi dan platform edukasi modern yang memudahkan masyarakat mengakses ilmu bermanfaat.
+                  </p>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-night-950/70 border border-sky-400/20 flex items-start gap-3.5">
+                <div class="w-9 h-9 rounded-lg bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-globe"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm sm:text-base font-bold text-sky-200">Cendekiawan Santri Berwawasan Global</h4>
+                  <p class="text-xs sm:text-sm text-slate-300 mt-1">
+                    Mengintegrasikan nilai-nilai luhur pesantren dengan inovasi global untuk berkontribusi nyata bagi negeri.
+                  </p>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-night-950/70 border border-amber-400/20 flex items-start gap-3.5">
+                <div class="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-hands-holding-circle"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm sm:text-base font-bold text-amber-200">Karya yang Mengalirkan Manfaat</h4>
+                  <p class="text-xs sm:text-sm text-slate-300 mt-1">
+                    Menjadikan setiap baris kode, tulisan, dan desain sebagai amal jariyah yang menerangi sesama.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         KEAHLIAN / SKILLS DENGAN BAR PROGRES & IKON TEKNOLOGI
+         ===================================================================== -->
+    <section id="keahlian" class="py-14 sm:py-20 px-4 sm:px-6 bg-night-900/45 border-y border-amber-400/15">
+      <div class="max-w-6xl mx-auto space-y-10">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-widest text-amber-400">Kompetensi &amp; Minat</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
+            Keahlian &amp; <span class="text-gold-gradient">Perangkat Berkarya</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Kombinasi keterampilan teknis digital, komunikasi bahasa, dan kreativitas desain.
+          </p>
+        </div>
+
+        <!-- Grid Bar Progres Keahlian -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Skill 1 -->
+          <div class="twilight-card rounded-2xl p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-amber-500/15 text-amber-300 flex items-center justify-center">
+                  <i class="fa-brands fa-html5 text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white">Web Design (HTML5, CSS3 &amp; Tailwind)</h3>
+                  <p class="text-xs text-slate-400">Antarmuka responsif &amp; estetika modern</p>
+                </div>
+              </div>
+              <span class="font-mono text-sm font-bold text-amber-300">88%</span>
+            </div>
+            <div class="w-full h-2.5 rounded-full bg-night-950 overflow-hidden border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full" style="width: 88%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 2 -->
+          <div class="twilight-card rounded-2xl p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-sky-500/15 text-sky-300 flex items-center justify-center">
+                  <i class="fa-brands fa-js text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white">JavaScript &amp; Interaktivitas Web</h3>
+                  <p class="text-xs text-slate-400">Logika dinamis, DOM &amp; animasi ringan</p>
+                </div>
+              </div>
+              <span class="font-mono text-sm font-bold text-sky-300">80%</span>
+            </div>
+            <div class="w-full h-2.5 rounded-full bg-night-950 overflow-hidden border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full" style="width: 80%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 3 -->
+          <div class="twilight-card rounded-2xl p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-amber-500/15 text-amber-300 flex items-center justify-center">
+                  <i class="fa-solid fa-language text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white">Bahasa Arab &amp; Bahasa Inggris</h3>
+                  <p class="text-xs text-slate-400">Komunikasi bilingual khas pesantren modern</p>
+                </div>
+              </div>
+              <span class="font-mono text-sm font-bold text-amber-300">85%</span>
+            </div>
+            <div class="w-full h-2.5 rounded-full bg-night-950 overflow-hidden border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 4 -->
+          <div class="twilight-card rounded-2xl p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-sky-500/15 text-sky-300 flex items-center justify-center">
+                  <i class="fa-solid fa-pen-nib text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-white">Desain Grafis &amp; Konten Kreatif</h3>
+                  <p class="text-xs text-slate-400">Poster dakwah, tata letak &amp; identitas visual</p>
+                </div>
+              </div>
+              <span class="font-mono text-sm font-bold text-sky-300">84%</span>
+            </div>
+            <div class="w-full h-2.5 rounded-full bg-night-950 overflow-hidden border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full" style="width: 84%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Baris Ikon Teknologi & Perangkat -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 pt-2">
+          <div class="twilight-card rounded-xl p-3.5 flex flex-col items-center justify-center gap-2 text-center">
+            <i class="fa-brands fa-html5 text-2xl text-orange-400"></i>
+            <span class="text-xs font-semibold text-slate-200">HTML5</span>
+          </div>
+          <div class="twilight-card rounded-xl p-3.5 flex flex-col items-center justify-center gap-2 text-center">
+            <i class="fa-brands fa-css3-alt text-2xl text-sky-400"></i>
+            <span class="text-xs font-semibold text-slate-200">CSS3</span>
+          </div>
+          <div class="twilight-card rounded-xl p-3.5 flex flex-col items-center justify-center gap-2 text-center">
+            <i class="fa-brands fa-js text-2xl text-amber-300"></i>
+            <span class="text-xs font-semibold text-slate-200">JavaScript</span>
+          </div>
+          <div class="twilight-card rounded-xl p-3.5 flex flex-col items-center justify-center gap-2 text-center">
+            <i class="fa-brands fa-git-alt text-2xl text-amber-500"></i>
+            <span class="text-xs font-semibold text-slate-200">Git &amp; Repo</span>
+          </div>
+          <div class="twilight-card rounded-xl p-3.5 flex flex-col items-center justify-center gap-2 text-center">
+            <i class="fa-solid fa-palette text-2xl text-sky-300"></i>
+            <span class="text-xs font-semibold text-slate-200">UI Design</span>
+          </div>
+          <div class="twilight-card rounded-xl p-3.5 flex flex-col items-center justify-center gap-2 text-center">
+            <i class="fa-solid fa-book-open-reader text-2xl text-amber-300"></i>
+            <span class="text-xs font-semibold text-slate-200">Literasi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION KONTAK, KARTU PROFIL DIGITAL & FORM PESAN
+         ===================================================================== -->
+    <section id="kontak" class="py-14 sm:py-20 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto space-y-10">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-widest text-sky-300">Jalin Silaturahmi</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white">
+            Terhubung dengan <span class="text-gold-gradient">Zidan</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Punya ide proyek web, diskusi kepesantrenan, atau sekadar menyapa? Jangan ragu mengirimkan pesan.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Kolom Kiri: Kartu Profil Digital / Status Kolaborasi + Info Kontak -->
+          <div class="lg:col-span-5 space-y-5">
+            <!-- WIDGET BARU: Kartu Profil Digital Santri -->
+            <div class="twilight-card rounded-2xl p-6 relative overflow-hidden">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[11px] font-mono uppercase tracking-widest text-amber-300 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-400/30">
+                  ID Card Digital
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-300">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  Siap Berkolaborasi
+                </span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+                  alt="Avatar Zidan"
+                  class="w-16 h-16 rounded-2xl object-cover border-2 border-amber-400/60"
+                  onerror="this.onerror=null;this.src='https://placehold.co/150x150/0b152c/fcd34d?text=MZ';"
+                />
+                <div>
+                  <h3 class="font-display text-lg font-bold text-white">Muhammad Zidan</h3>
+                  <p class="text-xs text-amber-300 font-medium">Santri Pondok Pesantren Daar el Qolam</p>
+                  <p class="text-xs text-slate-400 mt-1">Fokus: Web Dev, Desain &amp; Edukasi</p>
+                </div>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-800 grid grid-cols-2 gap-3 text-xs">
+                <div>
+                  <span class="text-slate-400 block">Domisili</span>
+                  <span class="text-slate-200 font-semibold">Tangerang, Banten</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block">Respon Rata-rata</span>
+                  <span class="text-sky-300 font-semibold">&lt; 24 Jam (Di luar jam mengaji)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Saluran Kontak Langsung (WhatsApp, Email, Sosial Media) -->
+            <div class="space-y-3">
+              <a href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Zidan,%20saya%20melihat%20portofolio%20Anda." target="_blank" rel="noopener noreferrer" class="twilight-card rounded-xl p-4 flex items-center gap-4 group">
+                <div class="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs text-slate-400">WhatsApp Langsung</p>
+                  <p class="text-sm font-bold text-white truncate">+62 812-3456-7890</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-amber-300"></i>
+              </a>
+
+              <a href="mailto:zidan.daarelqolam@example.com" class="twilight-card rounded-xl p-4 flex items-center gap-4 group">
+                <div class="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-400/30 text-amber-300 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs text-slate-400">Surat Elektronik (Email)</p>
+                  <p class="text-sm font-bold text-white truncate">zidan.daarelqolam@example.com</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-amber-300"></i>
+              </a>
+
+              <!-- Sosial Media -->
+              <div class="twilight-card rounded-xl p-4 flex items-center justify-between">
+                <span class="text-xs font-semibold text-slate-300">Sosial Media Zidan</span>
+                <div class="flex items-center gap-2.5">
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Zidan" class="w-9 h-9 rounded-lg bg-night-950 border border-amber-400/25 text-amber-300 hover:bg-amber-500 hover:text-night-950 flex items-center justify-center transition-colors">
+                    <i class="fa-brands fa-instagram"></i>
+                  </a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Zidan" class="w-9 h-9 rounded-lg bg-night-950 border border-sky-400/25 text-sky-300 hover:bg-sky-400 hover:text-night-950 flex items-center justify-center transition-colors">
+                    <i class="fa-brands fa-github"></i>
+                  </a>
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube Zidan" class="w-9 h-9 rounded-lg bg-night-950 border border-amber-400/25 text-amber-300 hover:bg-amber-500 hover:text-night-950 flex items-center justify-center transition-colors">
+                    <i class="fa-brands fa-youtube"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Form Kirim Pesan -->
+          <div class="lg:col-span-7">
+            <form id="contact-form" class="twilight-card rounded-2xl p-6 sm:p-8 space-y-5">
+              <div class="border-b border-amber-400/20 pb-4">
+                <h3 class="font-display text-xl font-bold text-white">Kirim Pesan Silaturahmi</h3>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                  Isi formulir di bawah ini untuk memulai percakapan atau kolaborasi bersama Zidan.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label for="sender-name" class="block text-xs font-semibold text-amber-200">Nama Lengkap</label>
+                  <input
+                    id="sender-name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Contoh: Ahmad Fauzan"
+                    class="w-full px-4 py-2.5 rounded-xl bg-night-950/90 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors"
+                  />
+                </div>
+                <div class="space-y-1.5">
+                  <label for="sender-email" class="block text-xs font-semibold text-amber-200">Email / No. WhatsApp</label>
+                  <input
+                    id="sender-email"
+                    name="contact"
+                    type="text"
+                    required
+                    placeholder="email@domain.com / 0812..."
+                    class="w-full px-4 py-2.5 rounded-xl bg-night-950/90 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="sender-topic" class="block text-xs font-semibold text-amber-200">Topik Pesan</label>
+                <select
+                  id="sender-topic"
+                  name="topic"
+                  class="w-full px-4 py-2.5 rounded-xl bg-night-950/90 border border-slate-700 text-sm text-white focus:outline-none focus:border-amber-400 transition-colors"
+                >
+                  <option value="Silaturahmi &amp; Diskusi">Silaturahmi &amp; Diskusi Ilmu</option>
+                  <option value="Kolaborasi Proyek Web">Kolaborasi Proyek Web / Desain</option>
+                  <option value="Undangan Kegiatan">Undangan Kegiatan / Organisasi</option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="sender-message" class="block text-xs font-semibold text-amber-200">Isi Pesan</label>
+                <textarea
+                  id="sender-message"
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="Tuliskan pesan atau gagasan Anda untuk Zidan..."
+                  class="w-full px-4 py-2.5 rounded-xl bg-night-950/90 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-orange-400 text-night-950 font-bold text-sm shadow-lg shadow-amber-500/20 hover:brightness-110 transition-all flex items-center justify-center gap-2"
+              >
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Kirim Pesan Sekarang</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================================================================
+       FOOTER
+       ======================================================================= -->
+  <footer class="relative z-10 border-t border-amber-400/20 bg-[#040812] py-8 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-night-950 font-display font-bold text-sm">
+          Z
+        </div>
+        <div>
+          <p class="text-sm font-bold text-amber-200">Muhammad Zidan &mdash; Navigator Cahaya &amp; Impian</p>
+          <p class="text-xs text-slate-400">Santri Pondok Pesantren Daar el Qolam &bull; Golden Twilight Edition</p>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-400">
+        &copy; <span id="footer-year">2026</span> Muhammad Zidan. Dirancang dengan cahaya ilmu &amp; ketulusan.
+      </p>
+    </div>
+  </footer>
+
+  <!-- =======================================================================
+       NOTIFIKASI TOAST CUSTOM (Pengganti alert() sesuai standar)
+       ======================================================================= -->
+  <div id="toast-box" class="fixed bottom-5 right-5 z-50 hidden max-w-sm rounded-2xl bg-[#0b152c] border border-amber-400/50 p-4 shadow-2xl text-sm text-white flex items-start gap-3">
+    <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <div class="flex-1">
+      <p id="toast-title" class="font-bold text-amber-200">Berhasil</p>
+      <p id="toast-desc" class="text-xs text-slate-300 mt-0.5">Pesan telah diproses.</p>
+    </div>
+    <button id="toast-close" type="button" class="text-slate-400 hover:text-white">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <!-- =======================================================================
+       JAVASCRIPT INTERAKTIF & ANIMASI RINGAN WINDOWS 7
+       ======================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Tahun Dinamis di Footer
+      var yearEl = document.getElementById('footer-year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      // 2. Fungsi Toast Notification (Tanpa alert)
+      var toastBox = document.getElementById('toast-box');
+      var toastTitle = document.getElementById('toast-title');
+      var toastDesc = document.getElementById('toast-desc');
+      var toastClose = document.getElementById('toast-close');
+      var toastTimer = null;
+
+      function showToast(title, desc) {
+        if (!toastBox) return;
+        toastTitle.textContent = title;
+        toastDesc.textContent = desc;
+        toastBox.classList.remove('hidden');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toastBox.classList.add('hidden');
+        }, 4500);
+      }
+
+      if (toastClose) {
+        toastClose.addEventListener('click', function () {
+          toastBox.classList.add('hidden');
+        });
+      }
+
+      // 3. Toggle Menu Mobile
+      var mobileBtn = document.getElementById('mobile-menu-btn');
+      var mobileMenu = document.getElementById('mobile-menu');
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', function () {
+          mobileMenu.classList.toggle('hidden');
+        });
+        var navLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+        for (var i = 0; i < navLinks.length; i++) {
+          navLinks[i].addEventListener('click', function () {
+            mobileMenu.classList.add('hidden');
+          });
+        }
+      }
+
+      // 4. Widget Waktu & Fase Langit Santri Real-time (WIB / UTC+7)
+      function updateSantriClock() {
+        var now = new Date();
+        // Konversi akurat ke Waktu Indonesia Barat (UTC+7)
+        var utcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
+        var wibDate = new Date(utcMs + (7 * 3600000));
+
+        var hours = wibDate.getHours();
+        var minutes = wibDate.getMinutes();
+        var seconds = wibDate.getSeconds();
+
+        var hh = hours < 10 ? '0' + hours : '' + hours;
+        var mm = minutes < 10 ? '0' + minutes : '' + minutes;
+        var ss = seconds < 10 ? '0' + seconds : '' + seconds;
+
+        var timeStr = hh + ':' + mm + ':' + ss + ' WIB';
+        var shortTimeStr = hh + ':' + mm + ' WIB';
+
+        var phaseLabel = 'Malam Qiyam & Istirahat';
+        var phaseIcon = '<i class="fa-solid fa-moon text-sky-300"></i>';
+        var activity = 'Muhasabah & Istirahat';
+
+        if (hours >= 4 && hours < 6) {
+          phaseLabel = 'Fase Fajar';
+          phaseIcon = '<i class="fa-solid fa-cloud-sun text-amber-300"></i>';
+          activity = 'Shalat Subuh & Tadarus';
+        } else if (hours >= 6 && hours < 11) {
+          phaseLabel = 'Waktu Dhuha';
+          phaseIcon = '<i class="fa-solid fa-sun text-amber-400"></i>';
+          activity = 'KBM Kelas & Kajian Ilmu';
+        } else if (hours >= 11 && hours < 15) {
+          phaseLabel = 'Siang Terik';
+          phaseIcon = '<i class="fa-solid fa-sun text-orange-400"></i>';
+          activity = 'Dzuhur & Diskusi Santri';
+        } else if (hours >= 15 && hours < 18) {
+          phaseLabel = 'Cahaya Ashar';
+          phaseIcon = '<i class="fa-solid fa-cloud-sun text-amber-300"></i>';
+          activity = 'Ekstrakurikuler & Kreativitas';
+        } else if (hours >= 18 && hours < 20) {
+          phaseLabel = 'Senja Maghrib';
+          phaseIcon = '<i class="fa-solid fa-star-and-crescent text-amber-400"></i>';
+          activity = 'Maghrib & Mengaji Al-Qur\'an';
+        } else if (hours >= 20 && hours < 22) {
+          phaseLabel = 'Malam Belajar';
+          phaseIcon = '<i class="fa-solid fa-book-open text-sky-300"></i>';
+          activity = 'Muthola\'ah & Eksplorasi Kode';
+        }
+
+        var clockEl = document.getElementById('wib-clock');
+        var labelEl = document.getElementById('sky-phase-label');
+        var iconEl = document.getElementById('sky-phase-icon');
+        var actEl = document.getElementById('santri-activity');
+
+        var clockMob = document.getElementById('wib-clock-mobile');
+        var labelMob = document.getElementById('sky-phase-label-mobile');
+        var iconMob = document.getElementById('sky-phase-icon-mobile');
+
+        if (clockEl) clockEl.textContent = timeStr;
+        if (labelEl) labelEl.textContent = phaseLabel;
+        if (iconEl) iconEl.innerHTML = phaseIcon;
+        if (actEl) actEl.textContent = activity;
+
+        if (clockMob) clockMob.textContent = shortTimeStr;
+        if (labelMob) labelMob.textContent = phaseLabel;
+        if (iconMob) iconMob.innerHTML = phaseIcon;
+      }
+
+      updateSantriClock();
+      setInterval(updateSantriClock, 1000);
+
+      // 5. Widget Mutiara Hikmah / Quote Generator Interaktif
+      var hikmahList = [
+        {
+          arabic: 'مَنْ جَدَّ وَجَدَ',
+          text: '“Barang siapa yang bersungguh-sungguh, maka ia akan mendapatkan kesuksesan.”',
+          source: '— Mahfuzhat Santri'
+        },
+        {
+          arabic: 'اَلْعِلْمُ نُوْرٌ وَنُوْرُ اللهِ لَا يُهْدَى لِعَاصٍ',
+          text: '“Ilmu itu adalah cahaya, dan cahaya Allah tidak akan diberikan kepada pelaku maksiat.”',
+          source: '— Nasihat Imam Asy-Syafi’i'
+        },
+        {
+          arabic: 'خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ',
+          text: '“Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia lainnya.”',
+          source: '— Hadits Riwayat Ahmad & Thabrani'
+        },
+        {
+          arabic: 'اُطْلُبُوا الْعِلْمَ مِنَ الْمَهْدِ إِلَى اللَّحْدِ',
+          text: '“Tuntutlah ilmu sejak dari buaian hingga ke liang lahat.”',
+          source: '— Mutiara Hikmah Pendidikan'
+        },
+        {
+          arabic: 'اَلْأَدَبُ فَوْقَ الْعِلْمِ',
+          text: '“Adab dan akhlak yang mulia berada di atas ketinggian ilmu pengetahuan.”',
+          source: '— Prinsip Pendidikan Pesantren'
+        }
+      ];
+
+      var currentHikmahIdx = 0;
+      var hikmahArabicEl = document.getElementById('hikmah-arabic');
+      var hikmahTextEl = document.getElementById('hikmah-text');
+      var hikmahSourceEl = document.getElementById('hikmah-source');
+      var hikmahCounterEl = document.getElementById('hikmah-counter');
+      var nextHikmahBtn = document.getElementById('next-hikmah-btn');
+      var copyHikmahBtn = document.getElementById('copy-hikmah-btn');
+
+      function renderHikmah(index) {
+        var item = hikmahList[index];
+        if (!item) return;
+        hikmahArabicEl.textContent = item.arabic;
+        hikmahTextEl.textContent = item.text;
+        hikmahSourceEl.textContent = item.source;
+        hikmahCounterEl.textContent = (index + 1) + ' / ' + hikmahList.length;
+      }
+
+      if (nextHikmahBtn) {
+        nextHikmahBtn.addEventListener('click', function () {
+          currentHikmahIdx = (currentHikmahIdx + 1) % hikmahList.length;
+          renderHikmah(currentHikmahIdx);
+        });
+      }
+
+      if (copyHikmahBtn) {
+        copyHikmahBtn.addEventListener('click', function () {
+          var item = hikmahList[currentHikmahIdx];
+          var fullQuote = item.arabic + '\n' + item.text + ' ' + item.source + ' (via Portofolio Zidan)';
+          var tempInput = document.createElement('textarea');
+          tempInput.value = fullQuote;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          try {
+            document.execCommand('copy');
+            showToast('Hikmah Disalin!', 'Mutiara hikmah santri berhasil disalin ke clipboard.');
+          } catch (err) {
+            showToast('Gagal Menyalin', 'Silakan salin teks secara manual.');
+          }
+          document.body.removeChild(tempInput);
+        });
+      }
+
+      // 6. Penanganan Form Kontak
+      var contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var senderName = document.getElementById('sender-name').value.trim();
+          var topic = document.getElementById('sender-topic').value;
+          showToast(
+            'Jazakallahu Khairan, ' + (senderName || 'Sahabat') + '!',
+            'Pesan Anda mengenai "' + topic + '" telah tercatat untuk Muhammad Zidan.'
+          );
+          contactForm.reset();
+        });
+      }
+
+      // 7. Canvas Partikel Bintang Halus & Kunang-Kunang Senja Keemasan (Golden Fireflies)
+      // Dioptimalkan agar sangat ringan pada GPU Intel HD / Windows 7 (maks. 48 partikel, tanpa shadowBlur berat)
+      var canvas = document.getElementById('twilight-canvas');
+      if (canvas && canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        var width = 0;
+        var height = 0;
+        var stars = [];
+        var fireflies = [];
+
+        function resizeCanvas() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+
+        function initParticles() {
+          stars = [];
+          fireflies = [];
+          var starCount = width < 768 ? 28 : 45;
+          var fireflyCount = width < 768 ? 14 : 24;
+
+          for (var i = 0; i < starCount; i++) {
+            stars.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              r: Math.random() * 1.4 + 0.4,
+              alpha: Math.random() * 0.6 + 0.2,
+              twinkleSpeed: (Math.random() * 0.015) + 0.004
+            });
+          }
+
+          for (var j = 0; j < fireflyCount; j++) {
+            fireflies.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              r: Math.random() * 2.2 + 1.2,
+              vx: (Math.random() - 0.5) * 0.35,
+              vy: -Math.random() * 0.35 - 0.1,
+              phase: Math.random() * Math.PI * 2,
+              isGold: Math.random() > 0.25
+            });
+          }
+        }
+
+        function animateTwilight() {
+          ctx.clearRect(0, 0, width, height);
+
+          // Gambar Bintang Langit Malam
+          for (var i = 0; i < stars.length; i++) {
+            var s = stars[i];
+            s.alpha += s.twinkleSpeed;
+            if (s.alpha > 0.85 || s.alpha < 0.15) {
+              s.twinkleSpeed = -s.twinkleSpeed;
+            }
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(186, 230, 253, ' + s.alpha.toFixed(2) + ')';
+            ctx.fill();
+          }
+
+          // Gambar Kunang-kunang Cahaya Senja Keemasan (Golden Light Motes)
+          for (var j = 0; j < fireflies.length; j++) {
+            var f = fireflies[j];
+            f.x += f.vx + Math.sin(f.phase) * 0.15;
+            f.y += f.vy;
+            f.phase += 0.025;
+
+            if (f.y < -10) {
+              f.y = height + 10;
+              f.x = Math.random() * width;
+            }
+            if (f.x < -10) f.x = width + 10;
+            if (f.x > width + 10) f.x = -10;
+
+            var glowAlpha = 0.45 + Math.sin(f.phase) * 0.35;
+
+            // Lingkaran cahaya lembut (pengganti shadowBlur agar FPS tinggi di Windows 7)
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.r * 2.6, 0, Math.PI * 2);
+            ctx.fillStyle = f.isGold
+              ? 'rgba(245, 158, 11, ' + (glowAlpha * 0.22).toFixed(2) + ')'
+              : 'rgba(56, 189, 248, ' + (glowAlpha * 0.20).toFixed(2) + ')';
+            ctx.fill();
+
+            // Inti cahaya
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+            ctx.fillStyle = f.isGold
+              ? 'rgba(252, 211, 77, ' + glowAlpha.toFixed(2) + ')'
+              : 'rgba(147, 197, 253, ' + glowAlpha.toFixed(2) + ')';
+            ctx.fill();
+          }
+
+          requestAnimationFrame(animateTwilight);
+        }
+
+        window.addEventListener('resize', function () {
+          resizeCanvas();
+          initParticles();
+        });
+
+        resizeCanvas();
+        initParticles();
+        animateTwilight();
+      }
+    })();
+  </script>
+</body>
+</html>
