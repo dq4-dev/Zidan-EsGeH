@@ -1,30 +1,137 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-<title> makantempe  </title>
-<img src="images.png" alt="jogja istimewa wordmark.png">
-<style>
-body {
-  background-image: url('https://img.magnific.com/foto-gratis/close-up-makau-scarlet-dari-tampilan-samping-kepala-makau-scarlet-dari-dekat_488145-3540.jpg?semt=ais_hybrid&w=740&q=80');
-  background-repeat: repeat;
-  background-attachment: fixed; 
-  background-size: 10% 100%;
-}
-</style>
-<h1 style="color:green;">teks proklamasi</h1>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b18">
+  <meta name="description" content="Zidan SG — student, creator, and explorer of ideas. A cosmic personal portfolio.">
+  <title>WAAPER | Zidan SG — Beyond the Ordinary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#070b18;--panel:rgba(15,24,47,.72);--line:rgba(151,190,255,.16);--text:#eef5ff;--muted:#a7b6d0;--cyan:#65dcff;--gold:#e8c98a;--purple:#9c8bff;--max:1160px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 70% 5%,rgba(42,91,164,.25),transparent 40%),radial-gradient(ellipse at 10% 70%,rgba(96,65,173,.15),transparent 38%),#070b18}
+    a{color:inherit;text-decoration:none}.container{width:min(var(--max),calc(100% - 44px));margin:auto}
+    .stars,.stars:before,.stars:after{position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(1px 1px at 20px 30px,#fff 98%,transparent),radial-gradient(1px 1px at 80px 120px,#9ddcff 98%,transparent),radial-gradient(1.5px 1.5px at 180px 70px,#fff 98%,transparent);background-size:230px 190px;opacity:.32;animation:drift 70s linear infinite}
+    .stars:before,.stars:after{content:"";inset:0;opacity:.35;transform:scale(1.7);animation-duration:110s}.stars:after{transform:scale(2.4);animation-duration:150s;opacity:.18}
+    @keyframes drift{to{background-position:230px 190px}}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:20;border-bottom:1px solid transparent;transition:.3s;background:linear-gradient(180deg,rgba(5,9,22,.82),rgba(5,9,22,.12));backdrop-filter:blur(14px)}
+    .nav.scrolled{border-color:var(--line);background:rgba(7,11,24,.88)}.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font:700 1.15rem "Space Grotesk";letter-spacing:.16em}.brand span{color:var(--cyan)}.nav-links{display:flex;gap:28px;color:#c6d3e8;font-size:.9rem}.nav-links a{transition:.2s}.nav-links a:hover{color:var(--cyan)}
+    .menu{display:none;background:none;border:1px solid var(--line);color:white;border-radius:10px;padding:8px 12px}
+    .hero{min-height:780px;display:grid;align-items:center;position:relative;padding:130px 0 90px;isolation:isolate}
+    .hero-art{position:absolute;inset:0 0 0 27%;z-index:-1;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0%,#000 23%,#000 78%,transparent 100%);opacity:.82}
+    .hero-art img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.92) brightness(.72);animation:slowzoom 24s ease-in-out infinite alternate}
+    @keyframes slowzoom{to{transform:scale(1.08)}}
+    .hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#070b18 0%,rgba(7,11,24,.91) 26%,rgba(7,11,24,.24) 72%,#070b18 100%),linear-gradient(0deg,#070b18 0%,transparent 32%,rgba(7,11,24,.12))}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--cyan);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}.eyebrow:before{content:"";width:30px;height:1px;background:var(--cyan)}
+    h1,h2,h3{font-family:"Space Grotesk",sans-serif;margin:0}h1{font-size:clamp(3.6rem,8vw,7.4rem);line-height:.94;letter-spacing:-.07em;margin:24px 0}h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(226,240,255,.85)}.hero-copy{max-width:550px;color:#c1cde0;line-height:1.8;font-size:1.04rem}
+    .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:700;font-size:.9rem;transition:.25s;border:1px solid var(--line)}.btn.primary{color:#06101e;background:linear-gradient(110deg,var(--cyan),#b5edff);border:0;box-shadow:0 8px 35px rgba(101,220,255,.18)}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(101,220,255,.15)}.btn.ghost{background:rgba(12,22,43,.45)}
+    .hero-meta{display:flex;gap:28px;margin-top:52px;color:var(--muted);font-size:.8rem}.hero-meta strong{display:block;color:var(--gold);font:600 1.1rem "Space Grotesk";margin-bottom:5px}
+    section{padding:105px 0;position:relative}.section-head{max-width:650px;margin-bottom:42px}.section-head h2{font-size:clamp(2.3rem,5vw,4rem);letter-spacing:-.055em;margin:14px 0}.section-head p{color:var(--muted);line-height:1.8}.grid{display:grid;gap:18px}.about-grid{grid-template-columns:1.15fr .85fr}.glass{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;backdrop-filter:blur(18px);box-shadow:0 18px 60px rgba(0,0,0,.18)}
+    .about-text{color:#c2cee1;line-height:1.9}.quote{font:500 1.35rem/1.5 "Space Grotesk";color:#f3e5c4}.quote small{display:block;font:400 .8rem "DM Sans";color:var(--muted);margin-top:18px}
+    .timeline{display:grid;gap:0}.timeline-item{padding:20px 0 20px 22px;border-left:1px solid rgba(101,220,255,.35);position:relative}.timeline-item:before{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--cyan);left:-4.5px;top:27px;box-shadow:0 0 15px var(--cyan)}.timeline-item span{color:var(--gold);font-size:.78rem}.timeline-item h3{font-size:1.08rem;margin:7px 0}.timeline-item p{color:var(--muted);margin:0;font-size:.9rem}
+    .cards{grid-template-columns:repeat(3,1fr)}.card{min-height:210px;transition:.3s;position:relative;overflow:hidden}.card:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;right:-55px;bottom:-75px;background:rgba(101,220,255,.08);filter:blur(2px)}.card:hover{transform:translateY(-7px);border-color:rgba(101,220,255,.42)}.number{font:600 .78rem "Space Grotesk";color:var(--cyan);letter-spacing:.12em}.card h3{font-size:1.25rem;margin:22px 0 10px}.card p{color:var(--muted);line-height:1.7;font-size:.9rem}
+    .skills{grid-template-columns:repeat(2,1fr)}.skill{margin:18px 0}.skill-top{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:10px}.bar{height:6px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:20px;box-shadow:0 0 14px rgba(101,220,255,.45)}
+    .work-grid{grid-template-columns:repeat(3,1fr)}.work{padding:0;overflow:hidden}.work-visual{height:175px;background:radial-gradient(circle at 65% 35%,rgba(101,220,255,.3),transparent 28%),linear-gradient(135deg,#14274a,#101126 60%,#32265a);display:grid;place-items:center;font:700 2.5rem "Space Grotesk";color:rgba(226,240,255,.82);letter-spacing:.1em}.work-body{padding:22px}.work-body p{color:var(--muted);font-size:.9rem;line-height:1.7}
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:24px}.contact p{color:var(--muted);line-height:1.8}.contact-link{color:var(--cyan);word-break:break-word}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.82rem}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+    .top{position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(101,220,255,.14);border:1px solid var(--line);color:var(--cyan);z-index:10}
+    @media(max-width:800px){.nav-inner{height:68px}.menu{display:block}.nav-links{display:none;position:absolute;top:68px;left:18px;right:18px;padding:18px;background:rgba(7,11,24,.97);border:1px solid var(--line);border-radius:16px;flex-direction:column;gap:18px}.nav-links.open{display:flex}.hero{min-height:720px}.hero-art{inset:0;opacity:.55}.hero:after{background:linear-gradient(90deg,rgba(7,11,24,.92),rgba(7,11,24,.42)),linear-gradient(0deg,#070b18,transparent 60%)}.about-grid,.contact{grid-template-columns:1fr}.cards,.work-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){.container{width:min(100% - 30px,var(--max))}.hero{min-height:690px;padding-top:115px}.hero-meta{gap:17px;flex-wrap:wrap}.cards,.work-grid,.skills{grid-template-columns:1fr}.glass{padding:22px}section{padding:78px 0}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  </style>
 </head>
 <body>
-<h1 style="background-color:DodgerBlue;">Hello World</h1>
+  <div class="stars" aria-hidden="true"></div>
+  <header class="nav" id="navbar"><div class="container nav-inner">
+    <a class="brand" href="#home">WA<span>APER</span>.</a>
+    <button class="menu" id="menuBtn" aria-label="Buka navigasi">☰</button>
+    <nav class="nav-links" id="navLinks"><a href="#home">Home</a><a href="#about">About</a><a href="#journey">Journey</a><a href="#skills">Skills</a><a href="#works">Works</a><a href="#contact">Contact</a></nav>
+  </div></header>
 
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-art"><img src="assets/waaper-cosmic.png" alt="Istana kosmik WAAPER di antara galaksi"></div>
+      <div class="container">
+        <div class="eyebrow">A personal universe · Est. 2026</div>
+        <h1 class="reveal">BEYOND <span>THE ORDINARY.</span></h1>
+        <p class="hero-copy reveal">I’m <strong>Zidan SG</strong> — a student, a learner, and an explorer of ideas. This is my little universe: a place where curiosity, creativity, discipline, and ambition move together.</p>
+        <div class="actions reveal"><a class="btn primary" href="#works">Explore my universe ↗</a><a class="btn ghost" href="#about">Discover my story</a></div>
+        <div class="hero-meta reveal"><div><strong>01</strong>Curiosity</div><div><strong>02</strong>Creativity</div><div><strong>03</strong>Growth</div></div>
+      </div>
+    </section>
 
+    <section id="about"><div class="container">
+      <div class="section-head reveal"><div class="eyebrow">01 / About me</div><h2>A small step.<br><span style="color:var(--cyan)">A limitless horizon.</span></h2><p>Every great journey begins with curiosity. I enjoy learning new things, exploring technology, staying active, and turning ideas into meaningful experiences.</p></div>
+      <div class="grid about-grid">
+        <article class="glass reveal"><h3 style="margin-bottom:16px">The person behind the pixels</h3><p class="about-text">I’m a student at Daar El Qolam with interests in visual coding, sports, languages, and continuous learning. I believe progress comes from patience, practice, and the courage to try something new.</p><p class="about-text">My goal is not simply to collect achievements, but to keep growing and create work that has a purpose.</p></article>
+        <aside class="glass quote reveal">“The universe is not the limit. It is a reminder of how much there is left to discover.”<small>— A personal reminder</small></aside>
+      </div>
+    </div></section>
 
-<p1>makan ayam</p1>
-<body>
+    <section id="journey"><div class="container">
+      <div class="section-head reveal"><div class="eyebrow">02 / The journey</div><h2>Learning is an<br>ongoing adventure.</h2><p>A snapshot of experiences and milestones from the original portfolio.</p></div>
+      <div class="grid about-grid">
+        <div class="glass reveal"><h3 style="margin-bottom:20px">Education</h3><div class="timeline">
+          <div class="timeline-item"><span>2023 — 2029</span><h3>Daar El Qolam</h3><p>School journey and personal development.</p></div>
+          <div class="timeline-item"><span>Future chapter</span><h3>Higher education</h3><p>More knowledge, new challenges, and wider possibilities.</p></div>
+        </div></div>
+        <div class="glass reveal"><h3 style="margin-bottom:20px">Experiences</h3><div class="timeline">
+          <div class="timeline-item"><span>2022</span><h3>Mathematics Olympiad</h3><p>Participant — a chance to learn and challenge myself.</p></div>
+          <div class="timeline-item"><span>2026</span><h3>Takraw Sport Event</h3><p>Quarterfinalist — learning teamwork, focus, and resilience.</p></div>
+        </div></div>
+      </div>
+    </div></section>
 
+    <section id="skills"><div class="container">
+      <div class="section-head reveal"><div class="eyebrow">03 / Skills & interests</div><h2>Tools for my<br><span style="color:var(--cyan)">next adventure.</span></h2><p>These are learning areas and interests represented in the original page. Progress indicators are illustrative, not formal test scores.</p></div>
+      <div class="grid about-grid">
+        <div class="glass reveal">
+          <div class="skill"><div class="skill-top"><span>Lessons & learning</span><span>90%</span></div><div class="bar"><i style="--w:90%"></i></div></div>
+          <div class="skill"><div class="skill-top"><span>Takraw</span><span>75%</span></div><div class="bar"><i style="--w:75%"></i></div></div>
+          <div class="skill"><div class="skill-top"><span>English</span><span>80%</span></div><div class="bar"><i style="--w:80%"></i></div></div>
+          <div class="skill"><div class="skill-top"><span>Arabic</span><span>70%</span></div><div class="bar"><i style="--w:70%"></i></div></div>
+          <div class="skill"><div class="skill-top"><span>Life lessons</span><span>50%</span></div><div class="bar"><i style="--w:50%"></i></div></div>
+        </div>
+        <div class="grid cards">
+          <article class="glass card reveal"><span class="number">01 / SPORT</span><h3>Sepak Takraw</h3><p>Movement, teamwork, discipline, and enjoying the game.</p></article>
+          <article class="glass card reveal"><span class="number">02 / TECH</span><h3>Visual Coding</h3><p>Exploring how ideas become interactive digital experiences.</p></article>
+          <article class="glass card reveal"><span class="number">03 / LANGUAGE</span><h3>Languages</h3><p>Learning English and Arabic to connect with wider worlds.</p></article>
+        </div>
+      </div>
+    </div></section>
 
-<footer>
-<p3 style="color:brown;">makan tempe rasane koyo</p2>
-<img src="images.png" alt="Jogja Istimewa Wordmark.png">
+    <section id="works"><div class="container">
+      <div class="section-head reveal"><div class="eyebrow">04 / Selected interests</div><h2>Fragments of<br>my universe.</h2><p>A curated showcase inspired by the activities and portfolio items in the source file. Replace these panels with your own project screenshots whenever ready.</p></div>
+      <div class="grid work-grid">
+        <article class="glass work reveal"><div class="work-visual">01</div><div class="work-body"><h3>Creative Coding</h3><p>Experiments with web design, visual coding, and digital creativity.</p></div></article>
+        <article class="glass work reveal"><div class="work-visual">02</div><div class="work-body"><h3>Sepak Takraw</h3><p>A sport journey built on practice, teamwork, and determination.</p></div></article>
+        <article class="glass work reveal"><div class="work-visual">03</div><div class="work-body"><h3>Mathematics</h3><p>Exploring logic, problem-solving, and the beauty of patterns.</p></div></article>
+      </div>
+    </div></section>
 
-<footer>
+    <section id="contact"><div class="container">
+      <div class="section-head reveal"><div class="eyebrow">05 / Contact</div><h2>Every connection<br>opens a new world.</h2><p>Have an idea, a question, or a project to discuss? Reach out through the contact details you choose to publish.</p></div>
+      <div class="grid contact">
+        <div class="glass reveal"><h3>Let’s connect</h3><p>This template intentionally leaves personal contact details as placeholders. Add only an email or social account you are comfortable sharing publicly.</p><a class="contact-link" href="mailto:your-email@example.com">your-email@example.com ↗</a></div>
+        <div class="glass reveal"><h3>Beyond the ordinary</h3><p>Thanks for visiting my universe. Keep exploring, keep learning, and keep creating.</p><a class="btn ghost" href="#home">Back to the beginning ↑</a></div>
+      </div>
+    </div></section>
+  </main>
+  <footer><div class="container footer-inner"><span>© <span id="year"></span> WAAPER · Zidan SG</span><span>Designed among the stars ✦</span></div></footer>
+  <a class="top" href="#home" aria-label="Kembali ke atas">↑</a>
+  <script>
+    const nav=document.getElementById('navbar'), menu=document.getElementById('menuBtn'), links=document.getElementById('navLinks');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>24));
+    menu.addEventListener('click',()=>links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
